@@ -1,16 +1,21 @@
 name: Semgrep OSS scan
+
 on:
+  workflow_dispatch:
   #pull_request: {}
   #push:
   #  branches: [main, master]
   #workflow_dispatch: {}
   #schedule:
   #  - cron: '0 0 15 * *'
+
 concurrency:
   group: semgrep-${{ github.event_name }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
+
 permissions:
   contents: read
+
 jobs:
   semgrep:
     name: semgrep-oss
